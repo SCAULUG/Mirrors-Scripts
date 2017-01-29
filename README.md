@@ -17,7 +17,7 @@ Mirrors synchronization scripts
 
 ##结果
 
-结果存放在 `Mirrors-Script/result`。
+同步结果默认存放在 `Mirrors-Scripts/result`。
 
 查询结果
 ```
