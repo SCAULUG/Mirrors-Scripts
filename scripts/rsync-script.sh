@@ -9,5 +9,5 @@ echo "--------------------------------------------------" >> ${LOG_FILE}
 rsync -avrtH --delete ${UP_STREAM} $LOCAL_PATH >> ${LOG_FILE}
 echo "--------------------------------------------------" >> ${LOG_FILE}
 sed -i "s/\(${DISTRO}[ \t]*\)Synchronizing/\1Synchronized - $(date +"%Y-%m-%d %H:%M:%S")/g" ${RESULT}
-cp {RESULT} /mirrors/mirrors/result
+cp ${RESULT} /mirrors/mirrors/result
 exit 0
