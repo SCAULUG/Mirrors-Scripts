@@ -25,7 +25,7 @@ MIRRORS="/mirrors"
 PID=$$
 
 
-#控制线程数
+#控制进程数
  THREAD_NUM=200
 
 #管道名称
@@ -40,7 +40,7 @@ exec 3<>$tmpfile
 #删除管道文件
 rm $tmpfile
 
-#并发线程创建相应的占位,并将占位信息写入管道
+#并发进程创建相应的占位,并将占位信息写入管道
 for ((i=1;i<=$THREAD_NUM;i++))
 do
     echo >&3
