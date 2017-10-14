@@ -78,7 +78,7 @@ wait
 
 stopTime=`date +%s`
 
-echo "TIME:`expr $stopTime - $startTime`" >> {RESULT}
+echo "TIME:`expr $stopTime - $startTime`" >> ${RESULT}
 exec 3>&-                     
 exec 3<&-   
 
