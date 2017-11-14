@@ -14,7 +14,7 @@ export RESULT="${BASE_DIR}/result"
 LOCK_FILE="/var/run/mirrors.pid"
 
 # 存储路径
-MIRRORS="/mirrors"
+MIRRORS="/mirrors/mirrors"
 
 
 PID=$$
