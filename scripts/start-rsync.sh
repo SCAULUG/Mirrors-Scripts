@@ -27,7 +27,7 @@ mkfifo ${MIRRORS_FIFO}
 exec 7<>${MIRRORS_FIFO}
 rm -rf ${MIRRORS_FIFO}
 
-for (i=1; i<=${THREAD_NUM}; i++)
+for((i=1; i<=${THREAD_NUM}; i++));
 do
     echo >&7
 done
