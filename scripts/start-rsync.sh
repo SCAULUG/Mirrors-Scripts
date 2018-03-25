@@ -42,27 +42,20 @@ fi
 echo "start rsync at $(date +"%Y-%m-%d %H:%M:%S")" > ${RESULT}
 
 Env_List=$(ls "${CONFIG_PATH}")
-
-
 for distroENV in ${Env_List}
 do
     read -u7
    {
-
         source  ${CONFIG_PATH}/${distroENV}
         if [ ! -f ${LOG_PATH} ]; then
             mkdir -p ${LOG_PATH}
         fi
-
-          ${BASE_DIR}/scripts/rsync-script.sh 
+        ${BASE_DIR}/scripts/rsync-script.sh 
         echo >&7       
     }&
 done
 wait
-
 exec 7>&-
-
 exec 7<&-
-
 rm -rf ${LOCK_FILE}
 exit 0
