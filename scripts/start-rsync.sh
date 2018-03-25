@@ -47,9 +47,6 @@ do
     read -u7
    {
         source  ${CONFIG_PATH}/${distroENV}
-        if [ ! -f ${LOG_PATH} ]; then
-            mkdir -p ${LOG_PATH}
-        fi
         ${BASE_DIR}/scripts/rsync-script.sh 
         echo >&7       
     }&
