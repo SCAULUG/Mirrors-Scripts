@@ -13,13 +13,14 @@ printf "<p id=\"%s\">Synchronizing</p>\n" ${DISTRO} >> ${RESULT}
 echo "--------------------------------------------------" >> ${LOG_FILE}
 
 rsync -avrtH --progress --delay-updates --delete-after --timeout=${TIME_OUT} ${UP_STREAM} ${LOCAL_PATH} >> ${LOG_FILE} 2>&1
-while [ $? -ne 0 -a $i -lt $MAX_RETRIES ]
+while [[ $? -ne 0 ]] && [[${sync_times} -lt ${MAX_RETRIES} ]]
 do
+  sync_times=$(($sync_times+1))
   echo "Retrying ${sync_times} times" >> ${LOG_FILE}
   rsync -avrtH --progress --delay-updates --delete-after --timeout=${TIME_OUT} ${UP_STREAM} ${LOCAL_PATH} >> ${LOG_FILE} 2>&1
 done
 
-if [ $sync_times -eq $MAX_RETRIES ]
+if [ ${sync_times} -eq ${MAX_RETRIES} ]
 then
   echo "Hit maximum number of retries, giving up" >> ${LOG_FILE}
   sed -i "s/\(${DISTRO}.*\)Synchronizing/\1Synchroniz failure - $(date +"%Y-%m-%d %H:%M:%S")/g" ${RESULT}
