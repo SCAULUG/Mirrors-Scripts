@@ -13,7 +13,7 @@ printf "<p id=\"%s\">Synchronizing</p>\n" ${DISTRO} >> ${RESULT}
 echo "--------------------------------------------------" >> ${LOG_FILE}
 
 rsync -avrtH --progress --delay-updates --delete-after --timeout=${TIME_OUT} ${UP_STREAM} ${LOCAL_PATH} >> ${LOG_FILE} 2>&1
-while [[ $? -ne 0 ]] || [[${sync_times} -lt ${MAX_RETRIES} ]]
+while [[ $? -ne 0 ]] && [[${sync_times} -lt ${MAX_RETRIES} ]]
 do
   sync_times=$(($sync_times+1))
   echo "Retrying ${sync_times} times" >> ${LOG_FILE}
