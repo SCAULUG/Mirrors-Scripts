@@ -14,6 +14,9 @@ LOCK_FILE="/var/run/mirrors.pid"
 # 存储路径
 MIRRORS="/mirrors"
 
+# 日志路径
+LOG_PATH="${BASE_DIR}/logs"
+
 # 执行结果
 export RESULT="${MIRRORS}/result"
 
@@ -39,6 +42,10 @@ if [ -f ${LOCK_FILE} ]; then
     exit 1
 else
     echo ${PID} > ${LOCK_FILE}
+fi
+
+if [ ! -f ${LOG_PATH} ]; then
+    mkdir -p ${LOG_PATH}
 fi
 
 echo "start rsync at $(date +"%Y-%m-%d %H:%M:%S")" > ${RESULT}
