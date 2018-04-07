@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author Locez
 # Date 2017-01-28
-# Update 2017-11-17
+# Update 2018-4-7
 
 BASE_DIR="$(cd "$(dirname "$0")";cd ..;pwd)"
 
@@ -17,10 +17,12 @@ MIRRORS="/mirrors"
 # 执行结果
 export RESULT="${MIRRORS}/result"
 
+# 进程数目
 THREAD_NUM=5
 
 PID=$$
 
+# 创建管道文件
 MIRRORS_FIFO=${PID}.fifo
 
 mkfifo ${MIRRORS_FIFO}
@@ -47,11 +49,12 @@ do
     read -u7
    {
         source  ${CONFIG_PATH}/${distroENV}
-        ${BASE_DIR}/scripts/rsync-script.sh 
-        echo >&7       
+        ${BASE_DIR}/scripts/rsync-script.sh
+        echo >&7
     }&
 done
 wait
+
 exec 7>&-
 exec 7<&-
 rm -rf ${LOCK_FILE}
