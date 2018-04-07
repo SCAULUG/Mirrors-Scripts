@@ -22,8 +22,8 @@ done
 if [ $sync_times -eq $MAX_RETRIES ]
 then
   echo "Hit maximum number of retries, giving up" >> ${LOG_FILE}
-  sed -i "s/\(${DISTRO}.*\)Synchronizing/\1Synchronized - $(date +"%Y-%m-%d %H:%M:%S")/g" ${RESULT}
-  exit 11
+  sed -i "s/\(${DISTRO}.*\)Synchronizing/\1Synchroniz failure - $(date +"%Y-%m-%d %H:%M:%S")/g" ${RESULT}
+  exit 1
 fi
 
 echo "--------------------------------------------------" >> ${LOG_FILE}
