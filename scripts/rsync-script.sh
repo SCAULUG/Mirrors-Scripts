@@ -20,7 +20,7 @@ do
   rsync -avrtH --progress --delay-updates --delete-after --timeout=${TIME_OUT} ${UP_STREAM} ${LOCAL_PATH} >> ${LOG_FILE} 2>&1
 done
 
-if [ ${sync_times} -eq ${MAX_RETRIES} ]
+if [[ $? -ne 0 ]] && [[ ${sync_times} -eq ${MAX_RETRIES} ]]
 then
   echo "Hit maximum number of retries, giving up" >> ${LOG_FILE}
   sed -i "s/\(${DISTRO}.*\)Synchronizing/\1Synchroniz failure - $(date +"%Y-%m-%d %H:%M:%S")/g" ${RESULT}
