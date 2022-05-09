@@ -14,6 +14,7 @@ echo "--------------------------------------------------" >> ${LOG_FILE}
 # 保存同步信息到mirrorz.d.json
 MIRRORZ_JSON="/mirrors/mirrorz.d.json"
 TMP_JSON="tmp.$$.json"
+sleep `expr $RANDOM % 60`
 if [[ $(grep -c '"cname":"'${DISTRO}'"' ${MIRRORZ_JSON}) -eq 0 ]]; then
     MIRRORS_STAT='{"cname":"'${DISTRO}'","url":"/'${DISTRO}'","status":"Y'$(date +%s)'","upstream":"'${UP_STREAM}'"}'
     jq -c ".mirrors |= . + [${MIRRORS_STAT}]" ${MIRRORZ_JSON} > ${TMP_JSON} && mv ${TMP_JSON} ${MIRRORZ_JSON}
